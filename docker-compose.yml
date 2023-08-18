@@ -20,3 +20,14 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
     volumes:
       - ./src:/var/www/html
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
+      - PMA_USER=wordpress
+      - PMA_PASSWORD=wordpress
+    ports:
+      - "8001:80"
